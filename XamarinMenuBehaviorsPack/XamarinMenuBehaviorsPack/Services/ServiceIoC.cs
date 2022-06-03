@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using XamarinMenuBehaviorsPack.ViewModels;
+using XamarinMenuBehaviorsPack.Views;
 
 namespace XamarinMenuBehaviorsPack.Services
 {
@@ -14,6 +16,8 @@ namespace XamarinMenuBehaviorsPack.Services
         {
             ContainerBuilder builder = new ContainerBuilder();
             //  Desde aqui configuramos las views, viewmodels y services...:
+            builder.RegisterType<MainMenuView>().SingleInstance();
+            builder.RegisterType<MainMenuViewModel>();
             this._Container = builder.Build();
         }
 
@@ -23,5 +27,19 @@ namespace XamarinMenuBehaviorsPack.Services
             this.RegisterDependencies();
         }
         //  Desde aqui indicamos las views, viewmodels y services...:
+        public MainMenuView MainMenuView
+        {
+            get
+            {
+                return this._Container.Resolve<MainMenuView>();
+            }
+        }
+        public MainMenuViewModel MainMenuViewModel
+        {
+            get
+            {
+                return this._Container.Resolve<MainMenuViewModel>();
+            }
+        }
     }
 }

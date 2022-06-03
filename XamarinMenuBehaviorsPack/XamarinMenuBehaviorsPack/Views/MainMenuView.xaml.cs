@@ -17,7 +17,9 @@ namespace XamarinMenuBehaviorsPack.Views
         public MainMenuView()
         {
             InitializeComponent();
-            ObservableCollection<MasterPageItem> menu = new ObservableCollection<MasterPageItem>
+            /*  ¡¡¡YA NO ES NECESARIO USAR EL CONSTRUCTOR Y EL COMANDO, LO HACEMOS DIRECTAMENTE DESDE EL VIEWMODEL!!!
+            
+             ObservableCollection<MasterPageItem> menu = new ObservableCollection<MasterPageItem>
             {
                 new MasterPageItem
                 {
@@ -44,14 +46,17 @@ namespace XamarinMenuBehaviorsPack.Views
             this.lsvMenu.ItemsSource = menu;
             Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(MainPage)));
             this.lsvMenu.ItemSelected += LsvMenu_ItemSelected; ;
+             */
         }
 
-        private void LsvMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        /*
+         private void LsvMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = (MasterPageItem)e.SelectedItem;
             Type type = item.Tipo;
             Detail = new NavigationPage((Page)Activator.CreateInstance(type));
             IsPresented = false;
         }
+         */
     }
 }

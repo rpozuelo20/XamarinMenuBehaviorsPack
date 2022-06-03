@@ -1,10 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinMenuBehaviorsPack.Views.MainMenuView">
+             x:Class="XamarinMenuBehaviorsPack.Views.MainMenuView"
+                  xmlns:local="clr-namespace:XamarinMenuBehaviorsPack"
+                  xmlns:behaviorspack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack">
     <MasterDetailPage.Master>
         <ContentPage Title="MainPage"
-                     BackgroundColor="white">
+                     BackgroundColor="white"
+                     x:Name="contentMenu"
+                     BindingContext="{Binding Source={x:Static local:App.ServiceLocator}, Path=MainMenuViewModel}">
             <StackLayout Orientation="Vertical">
                 <StackLayout BackgroundColor="DodgerBlue"
                              HeightRequest="56">
@@ -18,7 +22,13 @@
                 <ListView x:Name="lsvMenu"
                           RowHeight="84"
                           SeparatorVisibility="None"
-                          BackgroundColor="white">
+                          BackgroundColor="white"
+                          ItemsSource="{Binding MenuPrincipal}">
+                    <!--Implementacion de Behavior en ListView START-->
+                    <ListView.Behaviors>
+                        <behaviorspack:SelectedItemBehavior Command="{Binding PaginaSeleccionada}"/>
+                    </ListView.Behaviors>
+                    <!--Implementacion de Behavior en ListView END-->
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
